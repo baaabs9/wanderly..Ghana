@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderly Ghana — Hidden Trails & Remote Wonders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #0c1220;
+    }
+    
+    .hero-bg {
+      background: 
+        linear-gradient(160deg, rgba(12,18,32,0.88) 0%, rgba(20,45,30,0.75) 45%, rgba(70,35,10,0.65) 100%),
+        linear-gradient(135deg, #0c1220 0%, #1a2f23 45%, #3d2b1f 100%);
+    }
+    
+    .card-hover {
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    
+    .tab-active {
+      background: linear-gradient(135deg, #f59e0b, #ea580c);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+    
+    .adventure-card {
+      background: linear-gradient(145deg, #15202b 0%, #1a2a22 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    
+    .orange-glow {
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.15);
+    }
+  </style>
+</head>
+<body class="text-slate-100">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0c1220]/90 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20">
+            <i class="fas fa-mountain text-white text-sm"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight">Wanderly <span class="text-amber-400">Ghana</span></span>
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="#destinations" class="hover:text-amber-400 transition">Hidden Gems</a>
+          <a href="#flights" class="hover:text-amber-400 transition">Getting There</a>
+          <a href="#hotels" class="hover:text-amber-400 transition">Lodges</a>
+          <a href="#routes" class="hover:text-amber-400 transition">Routes</a>
+          <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+        </div>
+        <a href="https://wa.me/message/TLKGS5A2DSQRC1" target="_blank" class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:from-amber-400 hover:to-orange-500 transition shadow-lg shadow-orange-500/20">
+          Plan Your Trip
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-bg pt-28 pb-24 px-4 relative overflow-hidden">
+    <div class="absolute top-24 left-8 opacity-10 text-8xl">
+      <i class="fas fa-compass"></i>
+    </div>
+    <div class="absolute bottom-12 right-8 opacity-10 text-7xl">
+      <i class="fas fa-tree"></i>
+    </div>
+    
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+      <div class="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
+        <i class="fas fa-map-marker-alt"></i>
+        Discover Ghana’s remote side
+      </div>
+      
+      <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-5 leading-tight tracking-tight">
+        Beyond Accra.<br>
+        <span class="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-300 bg-clip-text text-transparent">Into the wild.</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light">
+        Waterfalls, ancient villages, wildlife parks, and mountain trails most travelers never reach. 
+        Plan your Ghana adventure from the remote corners.
+      </p>
+
+      <!-- Search Box -->
+      <div class="glass rounded-2xl p-4 sm:p-6 max-w-4xl mx-auto orange-glow">
+        <div class="flex flex-wrap gap-2 mb-5 justify-center sm:justify-start">
+          <button onclick="switchTab('flights')" id="tab-flights" class="tab-active px-5 py-2.5 rounded-full text-sm transition">
+            <i class="fas fa-plane mr-2"></i>Flights
+          </button>
+          <button onclick="switchTab('hotels')" id="tab-hotels" class="px-5 py-2.5 rounded-full text-sm text-white/70 hover:bg-white/10 transition">
+            <i class="fas fa-campground mr-2"></i>Lodges
+          </button>
+          <button onclick="switchTab('routes')" id="tab-routes" class="px-5 py-2.5 rounded-full text-sm text-white/70 hover:bg-white/10 transition">
+            <i class="fas fa-map-marked-alt mr-2"></i>Routes
+          </button>
+        </div>
+
+        <!-- Flight Search -->
+        <div id="search-flights" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div class="lg:col-span-1">
+            <label class="block text-xs text-slate-400 mb-1 text-left">From</label>
+            <input type="text" placeholder="City or airport" value="Accra (ACC)" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+          <div class="lg:col-span-1">
+            <label class="block text-xs text-slate-400 mb-1 text-left">To</label>
+            <select class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+              <option>Tamale (TML) — Mole</option>
+              <option>Kumasi (KMS)</option>
+              <option>Takoradi</option>
+              <option>Sunyani</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1 text-left">Depart</label>
+            <input type="date" value="2026-11-15" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1 text-left">Return</label>
+            <input type="date" value="2026-11-25" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+          <div class="flex items-end">
+            <button onclick="searchFlights()" class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-semibold py-3 rounded-xl transition shadow-lg shadow-orange-500/25">
+              Find Flights
+            </button>
+          </div>
+        </div>
+
+        <!-- Lodge Search -->
+        <div id="search-hotels" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div class="lg:col-span-2">
+            <label class="block text-xs text-slate-400 mb-1 text-left">Region or Attraction</label>
+            <select class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+              <option>Mole National Park</option>
+              <option>Larabanga Mosque</option>
+              <option>Paga Crocodile Pond</option>
+              <option>Wli / Volta Region</option>
+              <option>Kakum National Park</option>
+              <option>Nzulezo & Western</option>
+              <option>Mount Afadjato</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1 text-left">Check-in</label>
+            <input type="date" value="2026-11-15" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1 text-left">Check-out</label>
+            <input type="date" value="2026-11-25" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+          <div class="flex items-end">
+            <button onclick="searchHotels()" class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-semibold py-3 rounded-xl transition shadow-lg shadow-orange-500/25">
+              Find Lodges
+            </button>
+          </div>
+        </div>
+
+        <!-- Route Search -->
+        <div id="search-routes" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div>
+            <label class="block text-xs text-slate-400 mb-1 text-left">Starting Point</label>
+            <input type="text" value="Accra" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1 text-left">Focus Area</label>
+            <select class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+              <option>Northern Wilderness</option>
+              <option>Volta Highlands</option>
+              <option>Western Rainforest</option>
+              <option>Full Ghana Circuit</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1 text-left">Days</label>
+            <select class="w-full px-4 py-3 rounded-xl bg-slate-900/80 text-white text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500">
+              <option>5–7 days</option>
+              <option>8–12 days</option>
+              <option>2 weeks+</option>
+            </select>
+          </div>
+          <div class="flex items-end">
+            <button onclick="searchRoutes()" class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-semibold py-3 rounded-xl transition shadow-lg shadow-orange-500/25">
+              Build Route
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" class="hidden max-w-7xl mx-auto px-4 py-12">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold" id="results-title">Search Results</h2>
+      <button onclick="hideResults()" class="text-sm text-amber-400 hover:underline">Clear</button>
+    </div>
+    <div id="results-content" class="grid gap-4"></div>
+  </section>
+
+  <!-- Hidden Gems / Destinations -->
+  <section id="destinations" class="max-w-7xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <p class="text-amber-400 text-sm font-semibold tracking-widest uppercase mb-2">Remote & rarely crowded</p>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-3">Ghana’s Hidden Gems</h2>
+      <p class="text-slate-400 max-w-xl mx-auto">The places most visitors never reach — waterfalls, stilt villages, ancient parks, and mountain trails</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <div class="card-hover adventure-card rounded-2xl overflow-hidden">
+        <div class="h-48 bg-gradient-to-br from-emerald-800 to-teal-950 flex items-center justify-center relative">
+          <i class="fas fa-hippo text-white/25 text-7xl absolute"></i>
+          <i class="fas fa-binoculars text-white text-4xl relative z-10"></i>
+        </div>
+        <div class="p-5">
+          <span class="text-xs font-medium text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Northern Region</span>
+          <h3 class="font-bold text-lg mt-2">Mole National Park</h3>
+          <p class="text-sm text-slate-400 mt-1">Ghana’s largest wildlife park. Elephants, antelopes, and walking safaris in the wild.</p>
+          <p class="text-amber-400 font-semibold mt-3">~8–10 hrs from Accra</p>
+        </div>
+      </div>
+
+      <div class="card-hover adventure-card rounded-2xl overflow-hidden">
+        <div class="h-48 bg-gradient-to-br from-cyan-800 to-blue-950 flex items-center justify-center relative">
+          <i class="fas fa-water text-white/25 text-7xl absolute"></i>
+          <i class="fas fa-water text-white text-4xl relative z-10"></i>
+        </div>
+        <div class="p-5">
+          <span class="text-xs font-medium text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Volta Region</span>
+          <h3 class="font-bold text-lg mt-2">Wli Waterfalls</h3>
+          <p class="text-sm text-slate-400 mt-1">Highest waterfall in West Africa. Lower and upper falls, forest trails, and cool spray.</p>
+          <p class="text-amber-400 font-semibold mt-3">~4–5 hrs from Accra</p>
+        </div>
+      </div>
+
+      <div class="card-hover adventure-card rounded-2xl overflow-hidden">
+        <div class="h-48 bg-gradient-to-br from-green-800 to-emerald-950 flex items-center justify-center relative">
+          <i class="fas fa-tree text-white/25 text-7xl absolute"></i>
+          <i class="fas fa-bridge text-white text-4xl relative z-10"></i>
+        </div>
+        <div class="p-5">
+          <span class="text-xs font-medium text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Central Region</span>
+          <h3 class="font-bold text-lg mt-2">Kakum National Park</h3>
+          <p class="text-sm text-slate-400 mt-1">Famous canopy walkway high above the rainforest. Birds, monkeys, and dense jungle.</p>
+          <p class="text-amber-400 font-semibold mt-3">~3 hrs from Accra</p>
+        </div>
+      </div>
+
+      <div class="card-hover adventure-card rounded-2xl overflow-hidden">
+        <div class="h-48 bg-gradient-to-br from-amber-800 to-orange-950 flex items-center justify-center relative">
+          <i class="fas fa-home text-white/25 text-7xl absolute"></i>
+          <i class="fas fa-water text-white text-4xl relative z-10"></i>
+        </div>
+        <div class="p-5">
+          <span class="text-xs font-medium text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Western Region</span>
+          <h3 class="font-bold text-lg mt-2">Nzulezo Stilt Village</h3>
+          <p class="text-sm text-slate-400 mt-1">Ancient village built entirely on stilts over a lake. Boat access only. Living history.</p>
+          <p class="text-amber-400 font-semibold mt-3">~5–6 hrs from Accra</p>
+        </div>
+      </div>
+
+      <div class="card-hover adventure-card rounded-2xl overflow-hidden">
+        <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center relative">
+          <i class="fas fa-mountain text-white/25 text-7xl absolute"></i>
+          <i class="fas fa-hiking text-white text-4xl relative z-10"></i>
+        </div>
+        <div class="p-5">
+          <span class="text-xs font-medium text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Volta Region</span>
+          <h3 class="font-bold text-lg mt-2">Mount Afadjato</h3>
+          <p class="text-sm text-slate-400 mt-1">Ghana’s highest peak. Steep hike through forest with panoramic views at the summit.</p>
+          <p class="text-amber-400 font-semibold mt-3">~4–5 hrs from Accra</p>
+        </div>
+      </div>
+
+      <div class="card-hover adventure-card rounded-2xl overflow-hidden">
+        <div class="h-48 bg-gradient-to-br from-lime-800 to-green-950 flex items-center justify-center relative">
+          <i class="fas fa-paw text-white/25 text-7xl absolute"></i>
+          <i class="fas fa-paw text-white text-4xl relative z-10"></i>
+        </div>
+        <div class="p-5">
+          <span class="text-xs font-medium text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Volta Region</span>
+          <h3 class="font-bold text-lg mt-2">Tafi Atome Monkey Sanctuary</h3>
+          <p class="text-sm text-slate-400 mt-1">Sacred forest where monkeys live freely among the village. Quiet and deeply local.</p>
+          <p class="text-amber-400 font-semibold mt-3">~4 hrs from Accra</p>
+        </div>
+      </div>
+
+      <div class="card-hover adventure-card rounded-2xl overflow-hidden">
+        <div class="h-48 bg-gradient-to-br from-yellow-800 to-amber-950 flex items-center justify-center relative">
+          <i class="fas fa-mosque text-white/25 text-7xl absolute"></i>
+          <i class="fas fa-mosque text-white text-4xl relative z-10"></i>
+        </div>
+        <div class="p-5">
+          <span class="text-xs font-medium text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Northern Region</span>
+          <h3 class="font-bold text-lg mt-2">Larabanga Mosque</h3>
+          <p class="text-sm text-slate-400 mt-1">One of the oldest mosques in West Africa (15th century). Sudanese-style mud architecture near Mole.</p>
+          <p class="text-amber-400 font-semibold mt-3">Near Mole National Park</p>
+        </div>
+      </div>
+
+      <div class="card-hover adventure-card rounded-2xl overflow-hidden">
+        <div class="h-48 bg-gradient-to-br from-teal-800 to-cyan-950 flex items-center justify-center relative">
+          <i class="fas fa-dragon text-white/25 text-7xl absolute"></i>
+          <i class="fas fa-water text-white text-4xl relative z-10"></i>
+        </div>
+        <div class="p-5">
+          <span class="text-xs font-medium text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Upper East Region</span>
+          <h3 class="font-bold text-lg mt-2">Paga Crocodile Pond</h3>
+          <p class="text-sm text-slate-400 mt-1">Sacred pond where crocodiles are friendly and revered. Unique cultural experience near the Burkina border.</p>
+          <p class="text-amber-400 font-semibold mt-3">~2 hrs from Bolgatanga</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flights / Getting There -->
+  <section id="flights" class="py-16 bg-[#0a1018]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <p class="text-amber-400 text-sm font-semibold tracking-widest uppercase mb-2">Getting into the wild</p>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-3">Domestic Flights & Access</h2>
+        <p class="text-slate-400">Fly into Accra, then connect deeper into Ghana</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="adventure-card rounded-2xl p-6 card-hover">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <p class="text-sm text-slate-400">Accra → Tamale</p>
+              <p class="font-bold text-lg">Africa World Airlines</p>
+            </div>
+            <span class="bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-500/30">1h 15m</span>
+          </div>
+          <p class="text-sm text-slate-400 mb-4">Best gateway to Mole National Park and the North.</p>
+          <div class="flex justify-between items-center">
+            <p class="text-2xl font-bold text-amber-400">from ₵450</p>
+            <button class="text-sm font-medium text-amber-400 hover:text-amber-300">Details →</button>
+          </div>
+        </div>
+        <div class="adventure-card rounded-2xl p-6 card-hover">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <p class="text-sm text-slate-400">Accra → Kumasi</p>
+              <p class="font-bold text-lg">Africa World / Passion Air</p>
+            </div>
+            <span class="bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-500/30">45m</span>
+          </div>
+          <p class="text-sm text-slate-400 mb-4">Quick hop for Ashanti region and onward road trips.</p>
+          <div class="flex justify-between items-center">
+            <p class="text-2xl font-bold text-amber-400">from ₵350</p>
+            <button class="text-sm font-medium text-amber-400 hover:text-amber-300">Details →</button>
+          </div>
+        </div>
+        <div class="adventure-card rounded-2xl p-6 card-hover">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <p class="text-sm text-slate-400">Road transfers</p>
+              <p class="font-bold text-lg">Private & shared</p>
+            </div>
+            <span class="bg-amber-500/20 text-amber-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-amber-500/30">Flexible</span>
+          </div>
+          <p class="text-sm text-slate-400 mb-4">To Wli, Kakum, Nzulezo, Afadjato & more. We arrange trusted drivers.</p>
+          <div class="flex justify-between items-center">
+            <p class="text-2xl font-bold text-amber-400">from ₵600</p>
+            <button class="text-sm font-medium text-amber-400 hover:text-amber-300">Details →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lodges -->
+  <section id="hotels" class="max-w-7xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <p class="text-amber-400 text-sm font-semibold tracking-widest uppercase mb-2">Stay close to the action</p>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-3">Remote Lodges & Camps</h2>
+      <p class="text-slate-400">Sleep near the waterfalls, parks, and villages</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="adventure-card rounded-2xl overflow-hidden card-hover">
+        <div class="h-48 bg-gradient-to-br from-emerald-700 to-teal-900 flex items-center justify-center">
+          <i class="fas fa-tree text-white/35 text-6xl"></i>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-lg">Mole Motel</h3>
+            <span class="text-xs text-emerald-400">Wildlife</span>
+          </div>
+          <p class="text-sm text-slate-400 mt-1">Inside Mole National Park • Walking safaris at dawn</p>
+          <p class="text-amber-400 font-semibold mt-3">from ₵450 / night</p>
+        </div>
+      </div>
+      <div class="adventure-card rounded-2xl overflow-hidden card-hover">
+        <div class="h-48 bg-gradient-to-br from-cyan-700 to-blue-900 flex items-center justify-center">
+          <i class="fas fa-water text-white/35 text-6xl"></i>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-lg">Wli Waterfalls Lodge</h3>
+            <span class="text-xs text-cyan-400">Waterfall</span>
+          </div>
+          <p class="text-sm text-slate-400 mt-1">Steps from the falls • Forest setting • Local guides</p>
+          <p class="text-amber-400 font-semibold mt-3">from ₵280 / night</p>
+        </div>
+      </div>
+      <div class="adventure-card rounded-2xl overflow-hidden card-hover">
+        <div class="h-48 bg-gradient-to-br from-green-700 to-emerald-900 flex items-center justify-center">
+          <i class="fas fa-bridge text-white/35 text-6xl"></i>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-lg">Rainforest Lodge</h3>
+            <span class="text-xs text-green-400">Canopy</span>
+          </div>
+          <p class="text-sm text-slate-400 mt-1">Near Kakum • Canopy walk & night walks</p>
+          <p class="text-amber-400 font-semibold mt-3">from ₵320 / night</p>
+        </div>
+      </div>
+      <div class="adventure-card rounded-2xl overflow-hidden card-hover">
+        <div class="h-48 bg-gradient-to-br from-amber-700 to-orange-900 flex items-center justify-center">
+          <i class="fas fa-home text-white/35 text-6xl"></i>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-lg">Nzulezo Homestay</h3>
+            <span class="text-xs text-amber-400">Village</span>
+          </div>
+          <p class="text-sm text-slate-400 mt-1">Stay with families in the stilt village • Authentic</p>
+          <p class="text-amber-400 font-semibold mt-3">from ₵180 / night</p>
+        </div>
+      </div>
+      <div class="adventure-card rounded-2xl overflow-hidden card-hover">
+        <div class="h-48 bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
+          <i class="fas fa-mountain text-white/35 text-6xl"></i>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-lg">Afadjato Eco Lodge</h3>
+            <span class="text-xs text-slate-300">Mountain</span>
+          </div>
+          <p class="text-sm text-slate-400 mt-1">Base for summit hikes • Cool highland air</p>
+          <p class="text-amber-400 font-semibold mt-3">from ₵250 / night</p>
+        </div>
+      </div>
+      <div class="adventure-card rounded-2xl overflow-hidden card-hover">
+        <div class="h-48 bg-gradient-to-br from-lime-700 to-green-900 flex items-center justify-center">
+          <i class="fas fa-paw text-white/35 text-6xl"></i>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-lg">Tafi Atome Guesthouse</h3>
+            <span class="text-xs text-lime-400">Sanctuary</span>
+          </div>
+          <p class="text-sm text-slate-400 mt-1">Next to the monkey sanctuary • Village life</p>
+          <p class="text-amber-400 font-semibold mt-3">from ₵200 / night</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Routes -->
+  <section id="routes" class="py-16 bg-[#0a1018]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <p class="text-amber-400 text-sm font-semibold tracking-widest uppercase mb-2">Ready-made journeys</p>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-3">Ghana Adventure Routes</h2>
+        <p class="text-slate-400">Multi-day itineraries focused on remote attractions</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <div class="adventure-card rounded-2xl p-6 card-hover">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
+              <i class="fas fa-hippo text-white text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl">Northern Wilderness</h3>
+              <p class="text-sm text-slate-400">7–9 days • Accra → Tamale → Mole</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-sm text-slate-300 mb-6">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-plane text-amber-500 w-5"></i>
+              <span>Flight Accra → Tamale</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-car text-amber-500 w-5"></i>
+              <span>Transfer to Mole National Park</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-binoculars text-amber-500 w-5"></i>
+              <span>3–4 nights at Mole Motel + walking safaris</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-mosque text-amber-500 w-5"></i>
+              <span>Larabanga Mosque (oldest in West Africa)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-water text-amber-500 w-5"></i>
+              <span>Optional extension: Paga Crocodile Pond</span>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <p class="text-2xl font-bold text-amber-400">from ₵3,800</p>
+            <button class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:from-amber-400 hover:to-orange-500 transition">
+              View Route
+            </button>
+          </div>
+        </div>
+
+        <div class="adventure-card rounded-2xl p-6 card-hover">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
+              <i class="fas fa-water text-white text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl">Volta Highlands Trail</h3>
+              <p class="text-sm text-slate-400">5–7 days • Accra → Wli → Afadjato → Tafi</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-sm text-slate-300 mb-6">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-car text-amber-500 w-5"></i>
+              <span>Scenic drive through Volta Region</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-water text-amber-500 w-5"></i>
+              <span>2 nights near Wli Waterfalls</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-hiking text-amber-500 w-5"></i>
+              <span>Summit Mount Afadjato</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-paw text-amber-500 w-5"></i>
+              <span>Tafi Atome Monkey Sanctuary + village stay</span>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <p class="text-2xl font-bold text-amber-400">from ₵2,400</p>
+            <button class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:from-amber-400 hover:to-orange-500 transition">
+              View Route
+            </button>
+          </div>
+        </div>
+
+        <div class="adventure-card rounded-2xl p-6 card-hover">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20">
+              <i class="fas fa-tree text-white text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl">Rainforest & Stilt Village</h3>
+              <p class="text-sm text-slate-400">6–8 days • Accra → Kakum → Nzulezo</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-sm text-slate-300 mb-6">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-car text-amber-500 w-5"></i>
+              <span>Drive to Kakum National Park</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-bridge text-amber-500 w-5"></i>
+              <span>2 nights rainforest lodge + canopy walk</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-water text-amber-500 w-5"></i>
+              <span>Continue to Nzulezo stilt village</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-home text-amber-500 w-5"></i>
+              <span>Homestay experience + lake boat rides</span>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <p class="text-2xl font-bold text-amber-400">from ₵2,700</p>
+            <button class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:from-amber-400 hover:to-orange-500 transition">
+              View Route
+            </button>
+          </div>
+        </div>
+
+        <div class="adventure-card rounded-2xl p-6 card-hover">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/20">
+              <i class="fas fa-globe-africa text-white text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl">Full Ghana Circuit</h3>
+              <p class="text-sm text-slate-400">12–14 days • North + Volta + West</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-sm text-slate-300 mb-6">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-plane text-amber-500 w-5"></i>
+              <span>Mole National Park (3–4 nights)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-water text-amber-500 w-5"></i>
+              <span>Wli Falls + Mount Afadjato (3 nights)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-tree text-amber-500 w-5"></i>
+              <span>Kakum canopy + rainforest (2 nights)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-home text-amber-500 w-5"></i>
+              <span>Nzulezo stilt village finale</span>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <p class="text-2xl font-bold text-amber-400">from ₵6,500</p>
+            <button class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:from-amber-400 hover:to-orange-500 transition">
+              View Route
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="max-w-7xl mx-auto px-4 py-16">
+    <div class="adventure-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden">
+      <div class="absolute top-0 right-0 opacity-5 text-9xl">
+        <i class="fas fa-comments"></i>
+      </div>
+      <p class="text-amber-400 text-sm font-semibold tracking-widest uppercase mb-3">Let’s plan your adventure</p>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Get in Touch</h2>
+      <p class="text-slate-400 max-w-xl mx-auto mb-8">
+        Ready to explore Ghana’s remote waterfalls, wildlife parks, and hidden villages? 
+        Message me and I’ll help you build the perfect route.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="https://wa.me/message/TLKGS5A2DSQRC1" target="_blank" 
+           class="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-semibold px-8 py-4 rounded-2xl transition shadow-lg shadow-green-500/25">
+          <i class="fab fa-whatsapp text-2xl"></i>
+          Chat on WhatsApp
+        </a>
+        <a href="mailto:yussifbaba3331@gmail.com" 
+           class="inline-flex items-center gap-3 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-8 py-4 rounded-2xl transition">
+          <i class="fas fa-envelope text-xl text-amber-400"></i>
+          yussifbaba3331@gmail.com
+        </a>
+      </div>
+      
+      <p class="text-slate-500 text-sm mt-6">Usually replies within a few hours</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#060a10] border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-9 h-9 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center">
+              <i class="fas fa-mountain text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-bold">Wanderly <span class="text-amber-400">Ghana</span></span>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed">Helping travelers reach Ghana’s remote waterfalls, wildlife parks, mountain trails, and living villages.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Explore</h4>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><a href="#destinations" class="hover:text-amber-400 transition">Hidden Gems</a></li>
+            <li><a href="#flights" class="hover:text-amber-400 transition">Getting There</a></li>
+            <li><a href="#hotels" class="hover:text-amber-400 transition">Lodges</a></li>
+            <li><a href="#routes" class="hover:text-amber-400 transition">Routes</a></li>
+            <li><a href="#contact" class="hover:text-amber-400 transition">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Regions</h4>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><a href="#" class="hover:text-amber-400 transition">Northern (Mole)</a></li>
+            <li><a href="#" class="hover:text-amber-400 transition">Volta Highlands</a></li>
+            <li><a href="#" class="hover:text-amber-400 transition">Western Coast</a></li>
+            <li><a href="#" class="hover:text-amber-400 transition">Central Rainforest</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm text-slate-400">
+            <li>
+              <a href="https://wa.me/message/TLKGS5A2DSQRC1" target="_blank" class="hover:text-amber-400 transition flex items-center gap-2">
+                <i class="fab fa-whatsapp text-green-400"></i> WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href="mailto:yussifbaba3331@gmail.com" class="hover:text-amber-400 transition flex items-center gap-2">
+                <i class="fas fa-envelope text-amber-400"></i> yussifbaba3331@gmail.com
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-6 text-center text-sm text-slate-600">
+        © 2026 Wanderly Ghana • Built for those who go further
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tab) {
+      document.getElementById('search-flights').classList.add('hidden');
+      document.getElementById('search-hotels').classList.add('hidden');
+      document.getElementById('search-routes').classList.add('hidden');
+      
+      ['flights', 'hotels', 'routes'].forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        btn.classList.remove('tab-active');
+        btn.classList.add('text-white/70');
+      });
+      
+      document.getElementById('search-' + tab).classList.remove('hidden');
+      document.getElementById('search-' + tab).classList.add('grid');
+      
+      const activeBtn = document.getElementById('tab-' + tab);
+      activeBtn.classList.add('tab-active');
+      activeBtn.classList.remove('text-white/70');
+    }
+
+    const flightData = [
+      { from: 'Accra (ACC)', to: 'Tamale (TML)', airline: 'Africa World Airlines', duration: '1h 15m', price: '₵450', type: 'Direct', note: 'Gateway to Mole' },
+      { from: 'Accra (ACC)', to: 'Kumasi (KMS)', airline: 'Africa World / Passion Air', duration: '45m', price: '₵350', type: 'Direct', note: 'Ashanti hub' },
+      { from: 'Accra (ACC)', to: 'Tamale (TML)', airline: 'Passion Air', duration: '1h 20m', price: '₵480', type: 'Direct', note: 'Mole access' },
+    ];
+
+    const hotelData = [
+      { name: 'Mole Motel', area: 'Mole National Park', price: '₵450', type: 'Wildlife lodge' },
+      { name: 'Larabanga Guesthouse', area: 'Near Larabanga Mosque', price: '₵220', type: 'Village stay' },
+      { name: 'Paga Crocodile Lodge', area: 'Paga', price: '₵200', type: 'Near the pond' },
+      { name: 'Wli Waterfalls Lodge', area: 'Volta Region', price: '₵280', type: 'Near the falls' },
+      { name: 'Rainforest Lodge', area: 'Kakum', price: '₵320', type: 'Canopy access' },
+      { name: 'Nzulezo Homestay', area: 'Western Region', price: '₵180', type: 'Stilt village' },
+      { name: 'Afadjato Eco Lodge', area: 'Volta Highlands', price: '₵250', type: 'Mountain base' },
+      { name: 'Tafi Atome Guesthouse', area: 'Volta Region', price: '₵200', type: 'Monkey sanctuary' },
+    ];
+
+    const routeData = [
+      { 
+        title: 'Northern Wilderness', 
+        duration: '7–9 days', 
+        path: 'Accra → Tamale → Mole → Larabanga → Paga',
+        price: '₵3,800',
+        steps: ['Flight to Tamale', 'Mole National Park', 'Walking safaris', 'Larabanga Mosque', 'Paga Crocodile Pond']
+      },
+      { 
+        title: 'Volta Highlands Trail', 
+        duration: '5–7 days', 
+        path: 'Accra → Wli → Afadjato → Tafi',
+        price: '₵2,400',
+        steps: ['Wli Waterfalls', 'Mount Afadjato hike', 'Tafi Atome monkeys', 'Village stays']
+      },
+      { 
+        title: 'Rainforest & Stilt Village', 
+        duration: '6–8 days', 
+        path: 'Accra → Kakum → Nzulezo',
+        price: '₵2,700',
+        steps: ['Kakum canopy walk', 'Rainforest lodge', 'Nzulezo stilt village', 'Lake boat rides']
+      },
+      { 
+        title: 'Full Ghana Circuit', 
+        duration: '12–14 days', 
+        path: 'North + Volta + West',
+        price: '₵6,500',
+        steps: ['Mole Park', 'Wli + Afadjato', 'Kakum', 'Nzulezo finale']
+      },
+    ];
+
+    function showResults(title, html) {
+      document.getElementById('results-title').textContent = title;
+      document.getElementById('results-content').innerHTML = html;
+      document.getElementById('results').classList.remove('hidden');
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function hideResults() {
+      document.getElementById('results').classList.add('hidden');
+    }
+
+    function searchFlights() {
+      let html = flightData.map(f => `
+        <div class="adventure-card rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <p class="font-bold text-lg">${f.from} → ${f.to}</p>
+            <p class="text-sm text-slate-400">${f.airline} • ${f.duration} • ${f.note}</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">${f.type}</span>
+            <p class="text-xl font-bold text-amber-400">${f.price}</p>
+            <button class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium">Select</button>
+          </div>
+        </div>
+      `).join('');
+      showResults('Domestic Flight Options', html);
+    }
+
+    function searchHotels() {
+      let html = hotelData.map(h => `
+        <div class="adventure-card rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <p class="font-bold text-lg">${h.name}</p>
+            <p class="text-sm text-slate-400">${h.area} • ${h.type}</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <p class="text-xl font-bold text-amber-400">${h.price}<span class="text-sm font-normal text-slate-500"> / night</span></p>
+            <button class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium">Book</button>
+          </div>
+        </div>
+      `).join('');
+      showResults('Remote Lodges & Stays', html);
+    }
+
+    function searchRoutes() {
+      let html = routeData.map(r => `
+        <div class="adventure-card rounded-xl p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+            <div>
+              <p class="font-bold text-lg">${r.title}</p>
+              <p class="text-sm text-slate-400">${r.duration} • ${r.path}</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <p class="text-xl font-bold text-amber-400">${r.price}</p>
+              <button class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium">View</button>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 text-xs text-slate-400">
+            ${r.steps.map(s => `<span class="bg-white/5 border border-white/10 px-2.5 py-1 rounded-lg">${s}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
+      showResults('Ghana Adventure Routes', html);
+    }
+  </script>
+</body>
+</html>
